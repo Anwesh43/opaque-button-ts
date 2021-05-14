@@ -1,5 +1,6 @@
 import React from 'react'
 import {useStyle} from './hooks'
+import withContext from './withContext'
 
 interface OpaqueButtonProps {
     w  : number, 
@@ -17,3 +18,5 @@ const OpaqueButton = (props : OpaqueButtonProps) => {
         </div>
     )
 }
+
+export default withContext(OpaqueButton)
