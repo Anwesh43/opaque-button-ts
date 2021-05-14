@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, CSSProperties} from 'react'
 
 const delay : number = 20 
 const scGap : number = 0.02 
@@ -40,5 +40,44 @@ export const useDimension = () => {
     return {
         w, 
         h
+    }
+}
+
+export const useStyle = (w : number, h : number, scale : number) => {
+    const position = 'absolute'
+    const x = w / 2 
+    const y = h / 2
+    const size : number = Math.min(w, h) / 12  
+    return {
+        parentStyle() : CSSProperties {
+            return {
+                left : `${x}px`,
+                top: `${y}px`,
+                position
+            }
+        },
+
+        squareStyle() : CSSProperties {
+            return {
+                position, 
+                left : `${-size / 2}px`,
+                top : `${-size / 2}px`,
+                background: 'indigo',
+                width : `${size}px`,
+                height: `${size}px`,
+            }
+        },
+
+        squareOpaqueStyle() : CSSProperties{
+            return {
+                position, 
+                left : `${-size / 2}px`,
+                top : `${-size / 2}px`,
+                background: 'indigo',
+                width : `${size * scale}px`,
+                height: `${size}px`,
+                opacity: 0.3
+            }
+        }
     }
 }
