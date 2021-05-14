@@ -15,6 +15,7 @@ export const useAnimatedScale = () => {
                     setScale((prev : number) => {
                         if (prev > 1) {
                             setAnimated(false)
+                            clearInterval(interval)
                             return 0                        
                         }
                         return prev + scGap 
@@ -47,7 +48,7 @@ export const useStyle = (w : number, h : number, scale : number) => {
     const position = 'absolute'
     const x = w / 2 
     const y = h / 2
-    const size : number = Math.min(w, h) / 12  
+    const size : number = Math.min(w, h) / 8  
     return {
         parentStyle() : CSSProperties {
             return {
@@ -73,8 +74,8 @@ export const useStyle = (w : number, h : number, scale : number) => {
                 position, 
                 left : `${-size / 2}px`,
                 top : `${-size / 2}px`,
-                background: 'indigo',
-                width : `${size * scale}px`,
+                background: 'white',
+                width : `${size * Math.sin(scale * Math.PI)}px`,
                 height: `${size}px`,
                 opacity: 0.3
             }
